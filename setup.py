@@ -1,59 +1,63 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-#
-# Copyright 2017 Ricequant, Inc
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
+# @Name    : setup.py
+# @Author  : yanlee
 
-from os.path import dirname, join
+import setuptools
+import shutil
 
-from setuptools import find_packages, setup
+# 删除dist/目录
+shutil.rmtree('dist', ignore_errors=True)
 
-
-def read_file(file):
-    with open(file, "rt") as f:
-        return f.read()
-
-
-with open(join(dirname(__file__), 'rqalpha/VERSION.txt'), 'rb') as f:
-    version = f.read().decode('ascii').strip()
-
-
-setup(
-    name='rqalpha',
-    version=version,
-    description='Ricequant Algorithm Trading System',
-    packages=find_packages(exclude=[]),
-    author='ricequant',
-    author_email='public@ricequant.com',
-    license='Apache License v2',
-    package_data={'': ['*.*']},
-    url='https://github.com/ricequant/rqalpha',
-    install_requires=read_file("requirements.txt").strip(),
-    zip_safe=False,
-    entry_points={
-        "console_scripts": [
-            "rqalpha = rqalpha.__main__:entry_point"
-        ]
-    },
+setuptools.setup(
+    name="sdufeQuant",
+    version="1.1.1",
+    author="yanjlee",
+    author_email="yanjlee@163.com",
+    description="RQAlpha 从数据获取、算法交易、回测引擎，实盘模拟，实盘交易到数据分析，为程序化交易者提供了全套解决方案。",  # 模块简介
+    install_requires=[
+        'requests',
+        'faker',
+        'execjs',
+        'loguru',
+        'base64',
+        'hashlib',
+        'Crypto',
+        'pandas',
+        'fuzzywuzzy',
+        'httpx',
+        'Pillow',
+        'playwright',
+        'PyExecJS',
+        'redis',
+        'fastapi',
+        'uvicorn',
+        'APScheduler',
+        'beautifulsoup4',
+        'bs4',
+        'certifi',
+        'clickhouse-driver',
+        'curl-cffi',
+        'DrissionPage',
+        'fake-useragent',
+        'Flask',
+        'Flask-APScheduler',
+        'Flask-Cors',
+        'frida',
+        'gevent',
+        'httpx',
+        'Jinja2',
+        'langchain',
+        'langchain-community',
+        'suiutils-py',
+    ],
+    long_description=open(r'readme.md', encoding='utf-8').read(),  # 读取readme自述文件
+    long_description_content_type="text/markdown",
+    url="https://github.com/yanjlee/sdufeQuant",  # 模块github地址
+    packages=setuptools.find_packages(),     # 自动列出项目下的包
     classifiers=[
-        'Programming Language :: Python',
-        'Operating System :: Microsoft :: Windows',
-        'Operating System :: Unix',
-        'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3.4',
-        'Programming Language :: Python :: 3.5',
-        'Programming Language :: Python :: 3.6',
-        'Programming Language :: Python :: 3.7',
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: MIT License",   # 开源许可证
+        "Operating System :: OS Independent",      # 这里的定义是系统无关（全平台兼容），如果你的包只能在部分特定系统上运行，需要修改。
     ],
 )
